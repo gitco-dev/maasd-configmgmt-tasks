@@ -8,7 +8,7 @@ PublicConfigtasks.create(
  
   task "config-static-apache2", sub {
  
-    \$content = "<html><body><h4><a href=\"http://www.rexify.org/\">
+    my $content = "<html><body><h4><a href=\"http://www.rexify.org/\">
                 THIS IS A STATIC APACHE2, CONFIGURED VIA REX</a></h4></body></html>";
  
     if(is_debian) {
@@ -16,7 +16,7 @@ PublicConfigtasks.create(
       install package => "apache2-mpm-worker";
  
       file "/var/www/index.html",
-        content => \$content,
+        content => $content,
         mode    => 644;
  
       service apache2 => "ensure", "started";
@@ -28,7 +28,7 @@ PublicConfigtasks.create(
         install package => "apache2-worker";
  
         file "/srv/www/htdocs/index.html",
-          content => \$content,
+          content => $content,
           mode    => 644;
  
         service apache2 => "ensure", "started";
@@ -42,7 +42,7 @@ PublicConfigtasks.create(
         install package => "httpd";
  
         file "/var/www/html/index.html",
-          content => \$content,
+          content => $content,
           mode    => 644;
  
         service httpd => "ensure", "started";
