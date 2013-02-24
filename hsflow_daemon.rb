@@ -7,6 +7,9 @@ public_tasks = PublicConfigtasks.create(
   },
   :description => "HSFlow Daemon http:/www.sflow.com",
   :configtask => <<-EOF.unindent
+
+  # GIT Version: $Id$
+  
   task "config-hsflowd-agent", sub {
 
     if(is_suse) {

@@ -4,6 +4,8 @@ PublicConfigtasks.create(
 	:description => "This is a simple Apache2 Server",
   :configtask => <<-EOF.unindent
 
+  # GIT Version: $Id$
+
   task "config-static-apache2", sub {
 
     if(is_debian) {

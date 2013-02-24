@@ -4,7 +4,9 @@ PublicConfigtasks.create(
   :description => "This is a minimal Ganglia Install Task",
   :configtask => <<-EOF.unindent
 
-	task "config-ganglia-server", sub {
+  # GIT Version: $Id$
+
+  task "config-ganglia-server", sub {
 
     if(is_suse) {
       if(operating_system_version =~ /^11/ ) {

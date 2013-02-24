@@ -6,7 +6,7 @@ PublicConfigtasks.create(
 
   # GIT Version: $Id$
 
-	task "config-update-packages", sub {
+  task "config-update-packages", sub {
     if(is_suse) {
 		  if(operating_system_version =~ /^11/ ) {
 			  say run "zypper -n ref -fd";
