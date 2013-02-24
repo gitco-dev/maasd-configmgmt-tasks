@@ -1,31 +1,42 @@
 PublicConfigtasks.create(
-	:configtask_id => 0,
-	:configname => "Static Apache2 Server", 
-   :configtask => 'task "config-static-apache2", sub {
+  :configtask_id => 0,
+  :configname => "Static Apache2 Server", 
+	:description => "This is a simple Apache2 Server",
+  :configtask => <<-EOF.unindent
 
-  if(is_debian) {
+  task "config-static-apache2", sub {
 
-    install package => "apache2-mpm-worker";
+    if(is_debian) {
 
-    file "/var/www/index.html",
-          content => "<html><body><h4><a href=\"http://www.rexify.org/\">
-                    THIS IS A STATIC APACHE2, CONFIGURED VIA REX</a></h4></body></html>",
-        mode    => 644;
+      install package => "apache2-mpm-worker";
 
-    service apache2 => "ensure", "started";
-  } elsif(is_suse) {
-    if(operating_system_version =~ /^11/ ) {
-      install package => "apache2-worker";
-
-      file "/srv/www/htdocs/index.html",
-          content => "<html><body><h4><a href=\"http://www.rexify.org/\">
-                    THIS IS A STATIC APACHE2, CONFIGURED VIA REX</a></h4></body></html>",
+      file "/var/www/index.html",
+        content => "<html><body><h4><a href=\"http://www.rexify.org/\">
+          THIS IS A STATIC APACHE2, CONFIGURED VIA REX</a></h4></body></html>",
         mode    => 644;
 
       service apache2 => "ensure", "started";
 
+    } elsif(is_suse) {
+      if(operating_system_version =~ /^11/ ) {
+        install package => "apache2-worker";
+
+        file "/srv/www/htdocs/index.html",
+          content => "<html><body><h4><a href=\"http://www.rexify.org/\">
+            THIS IS A STATIC APACHE2, CONFIGURED VIA REX</a></h4></body></html>",
+          mode    => 644;
+
+        service apache2 => "ensure", "started";
+
+      }
     }
-  }
-};',
-	:description => "This is a simple Apache2 Server"
+
+  };
+  EOF
+
 )
+
+# vim: set ts=2 sw=2 tw=0:
+# vim: set expandtab:
+# vim: set ft=ruby:
+# vim: set bg=dark:
