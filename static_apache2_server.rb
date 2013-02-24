@@ -1,7 +1,7 @@
 PublicConfigtasks.create(
   :configtask_id => 0,
   :configname => "Static Apache2 Server", 
-	:description => "This is a simple Apache2 Server",
+  :description => "This is a simple Apache2 Server",
   :configtask => <<-EOF.unindent
 
   # GIT Version: $Id$
