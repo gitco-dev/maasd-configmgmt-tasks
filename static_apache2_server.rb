@@ -37,7 +37,7 @@ PublicConfigtasks.create(
  
     } elsif(is_redhat) {
  
-      if(operating_system_version =~ /^6/ ) {
+      if(operating_system_version =~ /^(5|6)/ ) {
  
         install package => "httpd";
  
